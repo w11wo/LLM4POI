@@ -28,6 +28,24 @@ Download the datasets raw data from [datasets](https://www.dropbox.com/scl/fi/te
 * run ```python preprocesssing/generate_ca_raw.py --dataset_name {dataset_name}```
 
 # Preprocess
+
+```sh
+cd preprocessing
+ln -sfv ../datasets .
+python run.py -f best_conf/ca.yml
+python run.py -f best_conf/nyc.yml
+python run.py -f best_conf/tky.yml
+
+# QK-similarities
+python traj_qk.py -dataset_name ca
+python traj_qk.py -dataset_name nyc
+python traj_qk.py -dataset_name tky
+
+# QA-pairs for SFT
+python to_nextpoi_kqt.py -dataset_name ca
+python to_nextpoi_kqt.py -dataset_name nyc
+python to_nextpoi_kqt.py -dataset_name tky
+```
 run ```python preprocessing/run.py```
 
 run ```python preprocessing/traj_qk.py```

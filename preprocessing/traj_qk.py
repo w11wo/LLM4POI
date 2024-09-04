@@ -67,7 +67,7 @@ def generate_kq_pairs(main_data):
 import re
 def simplify_poi_category(text):
     # Modify this regular expression pattern based on the specific substitution you need
-    return re.sub(r"\[\{'url': '[^']+', 'name': '([^']+)'}\]", r'\1', text)
+    return re.sub(r"\[\{'url': '[^']+', 'name': '((?:[^']|.)*)\'}\]", r'\1', text)
 
 def main():
     # Create the argument parser
@@ -93,7 +93,7 @@ def main():
     test_data['PoiCategoryName'] = test_data['PoiCategoryName'].apply(simplify_poi_category)
 
     # Save the modified DataFrame to a new CSV file
-    test_data.to_csv(f'{path}test_sample.csv', index=False)
+    test_data.to_csv(f'{path}test_sample_with_traj.csv', index=False)
     # Generate the QA pairs
     kq_pairs_train = generate_kq_pairs(train_data)
     kq_pairs_test = generate_kq_pairs(test_data)

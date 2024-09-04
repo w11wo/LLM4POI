@@ -67,7 +67,7 @@ def generate_qa_pairs(main_data, kqt=None, historical_data=None, args=None):
 
             # Create the final question string
             question = " ".join(question_parts)
-            value = {'NYC': 4981, 'TKY': 7833, 'CA': 9690}[args.dataset_name]
+            value = {'nyc': 4981, 'tky': 7833, 'ca': 9690}[args.dataset_name]
             question += f" Given the data, At {user_trajectory_data.iloc[-1]['UTCTimeOffset']}, Which POI id will user {user} visit? Note that POI id is an integer in the range from 0 to {value}."
 
             # Form the answer based on the last entry of the current trajectory
@@ -108,8 +108,12 @@ def main():
     # Read the data
     train_data = pd.read_csv(f'{path}train_sample.csv')
     test_data = pd.read_csv(f'{path}test_sample_with_traj.csv')
-    kqt1 = jload(f'{path}train_key_top200.json')
-    kqt2 = jload(f'{path}test_key_top200.json')
+    try:
+        kqt1 = jload(f'{path}train_key_top200.json')
+        kqt2 = jload(f'{path}test_key_top200.json')
+    except FileNotFoundError:
+        kqt1 = {}
+        kqt2 = {}
     # Generate the QA pairs
     qa_pairs_train = generate_qa_pairs(train_data, kqt=kqt1, historical_data=train_data, args=args)
     qa_pairs_test = generate_qa_pairs(test_data, kqt=kqt2, historical_data=train_data, args=args)

@@ -1,11 +1,11 @@
-from preprocess.generate_hypergraph import (
-    generate_hypergraph_from_file,
-    generate_hyperedge_stat,
-    generate_traj2traj_data,
-    generate_ci2traj_pyg_data,
-    merge_traj2traj_data,
-    filter_chunk
-)
+# from preprocess.generate_hypergraph import (
+#     generate_hypergraph_from_file,
+#     generate_hyperedge_stat,
+#     generate_traj2traj_data,
+#     generate_ci2traj_pyg_data,
+#     merge_traj2traj_data,
+#     filter_chunk
+# )
 from preprocess.preprocess_fn import (
     remove_unseen_user_poi,
     id_encode,

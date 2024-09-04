@@ -10,7 +10,7 @@ from preprocess import (
     id_encode,
     remove_unseen_user_poi,
     FileReader,
-    generate_hypergraph_from_file
+    # generate_hypergraph_from_file
 )
 import logging
 

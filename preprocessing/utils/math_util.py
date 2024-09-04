@@ -1,6 +1,6 @@
 import torch
 from torch import Tensor
-from torch_sparse.tensor import SparseTensor
+# from torch_sparse.tensor import SparseTensor
 from math import radians, cos, sin, asin, sqrt, exp
 import pandas as pd
 from bisect import bisect
@@ -88,7 +88,7 @@ def construct_slots(min_value, max_value, num_slots, type):
         return slots
 
 
-def delta_t_calculate(x_year: Tensor, adj_t: SparseTensor):
+def delta_t_calculate(x_year: Tensor, adj_t):
     src_years = x_year[adj_t.storage.col()]
     tar_years = x_year[adj_t.storage.row()]
     delta_ts_pre = tar_years - src_years
